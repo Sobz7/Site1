@@ -76,27 +76,124 @@
     </div>
 </header>
 
-<!-- Rest of your content -->
+
+
+
+<div id="image-modal" class="modal">
+    <span class="close" id="close-modal">&times;</span>
+    <img class="modal-content" id="image-to-display">
+  </div>
+  
+
+
+
 
 <section class="gallery">
     <h2>Our Gallery</h2>
     <div class="gallery-images">
-        <div class="gallery-item">
+        <div class="gallery-item" id="image-1">
             <img src="images/gal1.png" alt="Image 1">
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" id="image-2">
             <img src="images/gal2.png" alt="Image 2">
         </div>
+
+        <div class="gallery-item" id="image-2">
+            <img src="images/img7.jpg" alt="Image 2">
+        </div>
+
+        <div class="gallery-item" id="image-2">
+            <img src="images/img1.jpg" alt="Image 2">
+        </div>
+        <div class="gallery-item" id="image-2">
+            <img src="images/img2.jpeg" alt="Image 2">
+        </div>
+
+        <div class="gallery-item" id="image-2">
+            <img src="images/img3.jpg" alt="Image 2">
+        </div>
+        <div class="gallery-item" id="image-2">
+            <img src="images/img4.jpeg" alt="Image 2">
+        </div>
+        <div class="gallery-item" id="image-2">
+            <img src="images/img5.jpeg" alt="Image 2">
+        </div>
+        <div class="gallery-item" id="image-2">
+            <img src="images/img6.jpg" alt="Image 2">
+        </div>
+        <var>
+            <!-- <div class="gallery-item" id="image-2">
+                <img src="images/img8.jpg" alt="Image 2">
+            </div> -->
+           
+           
+        </var>
+
         <!-- Add more images as needed -->
     </div>
 </section>
 
-<!-- Footer -->
-<footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-27c6">
-    <div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1">Copyright. 2023-2024 Cape Peninsula University of Technology&nbsp;</p>
-    </div>
-</footer>
 
-</body>
-</html>
+
+<div id="image-modal" class="modal">
+    <span id="close-modal" class="close">&times;</span>
+    <img id="modal-content" class="modal-content">
+    <a id="prev-image" class="prev">&#9665;</a>
+    <a id="next-image" class="next">&#9655;</a>
+</div>
+
+
+<script>
+const galleryImages = document.querySelectorAll('.gallery-item');
+const modal = document.getElementById('image-modal');
+const modalImage = document.getElementById('image-to-display');
+const closeModalButton = document.getElementById('close-modal');
+const prevImageButton = document.getElementById('prev-image');
+const nextImageButton = document.getElementById('next-image');
+let currentIndex = 0;
+
+function openModal(index) {
+    modal.style.display = 'block';
+    modalImage.src = galleryImages[index].firstElementChild.src;
+    currentIndex = index;
+}
+
+galleryImages.forEach((image, index) => {
+    image.addEventListener('click', () => {
+        openModal(index);
+    });
+});
+
+closeModalButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+prevImageButton.addEventListener('click', () => {
+    if (currentIndex > 0) {
+        openModal(currentIndex - 1);
+    }
+});
+
+nextImageButton.addEventListener('click', () => {
+    if (currentIndex < galleryImages.length - 1) {
+        openModal(currentIndex + 1);
+    }
+});
+
+
+</script>
+  <!-- Footer -->
+  <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-27c6">
+      <div class="u-clearfix u-sheet u-sheet-1">
+          <p class="u-small-text u-text u-text-variant u-text-1">Copyright. 2023-2024 Cape Peninsula University of Technology&nbsp;</p>
+      </div>
+  </footer>
+  
+  </body>
+  </html>

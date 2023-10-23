@@ -33,6 +33,7 @@ header {
 header h1 {
   font-size: 36px;
   margin-bottom: 10px;
+  font-weight: bold; /* Add this line to make h1 text bold */
 }
 
 .about-content {
@@ -42,19 +43,28 @@ header h1 {
 .about-content h2 {
   font-size: 24px;
   margin-bottom: 10px;
+  font-weight: bold; /* Add this line to make h2 text bold */
 }
 
 .about-content p {
   font-size: 16px;
   line-height: 1.6;
   color: #333;
+  font-weight: bold; /* Add this line to make paragraph text bold */
 }
+
+
+
+
 
 /* Footer styles */
 .u-footer {
   background-color: #f9f9f9;
   padding: 20px;
 }
+
+
+
 
 .u-footer .u-small-text {
   font-size: 12px;
