@@ -2,6 +2,10 @@
 $fullName = $_POST ['Full Name'];
 $email = $_POST ['Email address'];
 $contacts = $_POST ['Contact details'];
+$starters = $_POST ['Starters'];
+$mains = $_POST ['Mains'];
+$desserts = $_POST ['Desserts'];
+$drinks = $_POST ['Drinks'];
 
 if (!empty($fullName) || !empty($email) || !empty ($contacts)){
     $host = "localhost";
@@ -16,7 +20,7 @@ if (!empty($fullName) || !empty($email) || !empty ($contacts)){
     
     } else{
         $SELECT = "SELECT email from Ordered Where email =? Limit 1";
-        $INSERT = "INSERT into Ordered (fullName, email, contacts) values (?, ?, ?)";
+        $INSERT = "INSERT into Ordered (fullName, email, contacts, starters, mains, desserts, drinks) values (?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $conn->prepare($SELECT);
         $stmt->bind_param("s", $email);
@@ -29,12 +33,19 @@ if (!empty($fullName) || !empty($email) || !empty ($contacts)){
             $stmt->close();
 
             $stmt = $conn->($INSERT);
-            $stmt->bind_param("ssssii", $fullName, $email, $contacts);
+            $stmt->bind_param("ssssii", $fullName, $email, $contacts, $starters, $mains, $desserts, $drinks);
             $stmt->execute();
             
             echo "New record inserted!";
         } else {
             "Email already exists!"
+        
+        } elseif ($conn->query($INSERT) === TRUE) {
+
+            echo "Record added successfully!";
+        } else {
+
+            echo "Error: " . $INSERT . "<br>" . $conn->error;
         }
         $stmt->close();
         $conn->close();
